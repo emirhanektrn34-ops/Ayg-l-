@@ -1,0 +1,37 @@
+<!DOCTYPE html><meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1,user-scalable=no">
+<title>Aygül iyi ki varsın ❤️</title>
+<style>
+html,body{margin:0;height:100%;background:#0f1020;font-family:-apple-system,system-ui,Arial;color:#fff;overflow:hidden}
+.wrap{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;padding:20px}
+#heart{position:relative;width:min(30vh,48vw);height:min(27vh,44vw);transform:rotate(45deg);
+background:linear-gradient(135deg,#ff8fab,#ff4d6d);border-radius:12% 12% 0 0;box-shadow:0 0 20px rgba(255,77,109,.55)}
+#heart:before,#heart:after{content:"";position:absolute;width:100%;height:100%;background:inherit;border-radius:50%}
+#heart:before{left:-50%;top:0}#heart:after{top:-50%;left:0}
+.lbl{padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);font-weight:700}
+.msg{font-size:clamp(26px,7vw,48px);display:none;background:linear-gradient(90deg,#fff,#ff4d6d,#ff8fab);
+-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 0 16px rgba(255,77,109,.35)}
+.h{position:fixed;pointer-events:none;width:12px;height:12px;transform:translate(-50%,-50%) rotate(45deg);
+background:#ff6b8a;animation:f 3.4s ease-in forwards}
+.h:before,.h:after{content:"";position:absolute;width:12px;height:12px;background:inherit;border-radius:50%}
+.h:before{left:-6px}.h:after{top:-6px}@keyframes f{0%{opacity:0;transform:translate(-50%,-10%) rotate(45deg) scale(.6)}
+12%{opacity:1}100%{opacity:0;transform:translate(-50%,-240px) rotate(45deg) scale(1.08)}}
+</style>
+<div class=wrap>
+  <div id=heart role=button aria-label="Kalbe dokun"></div>
+  <div id=label class=lbl>💗 Kalbe dokun</div>
+  <div id=msg class=msg>Aygül iyi ki varsın ❤️</div>
+</div>
+<script>
+function spawn(x,y){const h=document.createElement('div');h.className='h';h.style.left=x+'px';h.style.top=y+'px';
+document.body.appendChild(h);setTimeout(()=>h.remove(),3600)}
+function burstEverywhere(times=120){for(let i=0;i<times;i++){const x=16+Math.random()*(innerWidth-32);
+const y=innerHeight-24-Math.random()*innerHeight*0.9;spawn(x,y)}}
+function gentle(){spawn(30+Math.random()*(innerWidth-60), innerHeight-30)}
+function tap(e){e&&e.preventDefault&&e.preventDefault();const p=e&&e.touches?e.touches[0]:e;
+document.getElementById('msg').style.display='block';document.getElementById('label').style.display='none';
+burstEverywhere(140);if(!window._gentle){window._gentle=setInterval(gentle,520)}}
+['touchstart','pointerdown','mousedown','click'].forEach(ev=>{
+  document.getElementById('heart').addEventListener(ev,tap,{passive:false});
+});
+</script>
